@@ -26,7 +26,11 @@
 
                     <div class="mb-3">
                         <label for="kelas" class="form-label">Kelas</label>
-                        <input type="text" id="kelas" name="kelas" class="form-control" required>
+                        <select name="kelas_id" id="kelas_id" required>
+                            @foreach ($kelas as $KelasItem)
+                            <option value="{{$KelasItem->id}}">{{$KelasItem->nama_kelas}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="d-grid">
