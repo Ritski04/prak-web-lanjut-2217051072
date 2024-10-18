@@ -41,7 +41,8 @@
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card profile-card p-4 bg-white">
             <div class="text-center mb-4">
-                <img src="https://via.placeholder.com/120" alt="Profile Picture">
+            <img src="{{ asset('assets/img/ritski.jpg') }}"
+            alt="Deskripsi Gambar">
             </div>
             <table class="table table-borderless profile-info">
                 <tbody>
