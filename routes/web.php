@@ -30,3 +30,8 @@ Route::post('/user/store', [UserController::class,
 
  Route::get('/user', [UserController::class,
  'index'])->name('user.list');
+
+ Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+
+ Route::get('/show/{id}',[UserController::class,'show'])->name('users.show');
+ Route::get('/user/{id}', [UserController::class, 'profile'])->name('user.profile');
