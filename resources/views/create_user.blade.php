@@ -11,7 +11,7 @@
 @section('content')
 <div class="container mt-5">
     <h2 class="mb-4">Form Create User</h2>
-    <form action="{{ route('user.store') }}" method="POST">
+    <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="nama" class="form-label">Nama</label>
@@ -31,6 +31,12 @@
                 @endforeach
             </select>
         </div>
+
+        <div class="mb-3">
+            <input type="file" id="foto" name="foto"><br><br>
+            <label for="foto">foto:</label><br>
+        </div>
+
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

@@ -12,13 +12,23 @@
             background-color: #f8f9fa;
         }
 
-        .profile-card {
-            width: 24rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        .profile-card img {
+        .profile-card {
+            width: 24rem;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-avatar img {
             width: 120px;
             height: 120px;
             object-fit: cover;
@@ -26,39 +36,31 @@
             border: 2px solid #dee2e6;
         }
 
-        .profile-info td {
-            padding: 8px 0;
+        .profile-info p {
+            margin: 10px 0;
+            font-size: 1rem;
         }
 
-        .profile-info td:first-child {
+        .profile-info .profile-name,
+        .profile-info .profile-class,
+        .profile-info .profile-npm {
             font-weight: 600;
-            width: 30%;
         }
     </style>
 </head>
 
 <body>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card profile-card p-4 bg-white">
-            <table class="table table-borderless profile-info">
-                <tbody>
-                    <tr>
-                        <td>Nama</td>
-                        <td>:</td>
-                        <td><p>{{ $nama }}</p></td>
-                    </tr>
-                    <tr>
-                        <td>NPM</td>
-                        <td>:</td>
-                        <td><p>{{ $npm }}</p></td>
-                    </tr>
-                    <tr>
-                        <td>Kelas</td>
-                        <td>:</td>
-                        <td>{{ $nama_kelas ?? 'Kelas tidak ditemukan'}}</td>
-                    </tr>
-                </tbody>
-            </table>
+
+    <div class="container profile-container">
+        <div class="card profile-card">
+            <div class="profile-avatar mb-3">
+                <img src="{{ $user->foto ? asset($user->foto) : asset('assets/upload/img/default-foto.jpg') }}" alt="Profile">
+            </div>
+            <div class="profile-info">
+                <p class="profile-name">Nama: <br><span>{{ $user->nama }}</span></p>
+                <p class="profile-class">NPM: <br><span>{{ $user->npm }}</span></p>
+                <p class="profile-npm">Kelas: <br><span>{{ $user->nama_kelas ?? 'Kelas Tidak ditemukan'}}</span></p>
+            </div>
         </div>
     </div>
 

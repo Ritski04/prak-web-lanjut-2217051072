@@ -54,18 +54,42 @@ class UserController extends Controller
         return view('create_user', $data);
     }
 
-    public function store(UserRequest $request)
-       {
-        $validatedData = $request->validate([
+    public function store(Request $request)
+    {
+        $request->validate([
             'nama' => 'required|string|max:255',
             'npm' => 'required|string|max:255',
-            'kelas_id' => 'required|exists:kelas,id',
-           ]);
-
-           $user = userModel::create($validatedData);
-
-           $user->load('kelas');
-
-        return redirect()->to('/user');
+            'kelas_id' => 'required|integer',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            // Menyimpan file foto di folder 'uploads'
+            $fotoPath = $foto->move(('upload/img'), $foto);
+            } 
+            else {
+                $fotoPath = null;
+            }
+            $this->userModel->create([
+                'nama' => $request->input('nama'),
+                'npm' => $request->input('npm'),
+                'kelas_id' => $request->input('kelas_id'),
+                'foto' => $fotoPath, // Menyimpan path foto
+                ]);
+                return redirect()->to('/user')->with('success', 'User berhasil ditambahkan');
     }
+
+    
+    public function show($id){
+        $user = $this->userModel->getUser($id);
+        $data = [
+            'title' => 'profile',
+            'user' => $user,
+        ];
+        return view('profile',$data);
+    }
+
+    
+
+        
 }
