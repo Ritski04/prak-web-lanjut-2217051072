@@ -40,26 +40,22 @@
 <body>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card profile-card p-4 bg-white">
-            <div class="text-center mb-4">
-            <img src="{{ asset('assets/img/ritski.jpg') }}"
-            alt="Deskripsi Gambar">
-            </div>
             <table class="table table-borderless profile-info">
                 <tbody>
                     <tr>
                         <td>Nama</td>
                         <td>:</td>
-                        <td><?= $nama ?></td>
-                    </tr>
-                    <tr>
-                        <td>Kelas</td>
-                        <td>:</td>
-                        <td><?= $kelas ?></td>
+                        <td><p>{{ $nama }}</p></td>
                     </tr>
                     <tr>
                         <td>NPM</td>
                         <td>:</td>
-                        <td><?= $npm ?></td>
+                        <td><p>{{ $npm }}</p></td>
+                    </tr>
+                    <tr>
+                        <td>Kelas</td>
+                        <td>:</td>
+                        <td>{{ $nama_kelas ?? 'Kelas tidak ditemukan'}}</td>
                     </tr>
                 </tbody>
             </table>
