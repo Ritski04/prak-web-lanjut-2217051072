@@ -29,7 +29,13 @@
                     <td>{{ $user->npm }}</td>
                     <td>{{ $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan' }}</td>
                     <td>
-                        <a href="{{ route('users.show', $user->id) }}" class="btn btn-warning mb-3">Detail</a>
+                    <a href="{{ route('users.show', $user['id'])}}" class="btn btn-primary mb-3">View</a>
+                        <a href="{{ route('user.edit', $user['id']) }}" class="btn btn-warning mb-3">Edit</a>
+                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger mb-3" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus User Ini?')">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
