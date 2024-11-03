@@ -19,8 +19,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="npm" class="form-label">NPM</label>
-            <input type="text" class="form-control" id="npm" name="npm" required>
+            <label for="ipk" class="form-label">IPK</label>
+            <input type="text" class="form-control" id="ipk" name="ipk">
         </div>
 
         <div class="mb-3">

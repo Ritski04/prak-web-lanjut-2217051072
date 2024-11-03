@@ -12,12 +12,12 @@ class UserModel extends Model
     protected $guarded = ['id'];
     protected $fillable = [
         'nama',
-        'npm',
+        'ipk',
         'kelas_id',
         'foto',
     ];
 
-    public function Kelas(){
+    public function kelas() {
         return $this->belongsTo(Kelas::class, 'kelas_id');
     }
     public function getUser($id = null)
