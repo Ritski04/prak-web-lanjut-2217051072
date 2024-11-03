@@ -11,10 +11,15 @@ class Kelas extends Model
 
     protected $guarded = ['id'];
 
-    public function user()
-    {
+    public function users() {
         return $this->hasMany(UserModel::class, 'kelas_id');
     }
+
+    public function kelas()
+    {
+    return $this->belongsTo(Kelas::class, 'kelas_id');
+    }
+
 
     protected $table = 'kelas';
 

@@ -29,13 +29,13 @@ class UserController extends Controller
 
 
 
-    public function profile($nama = "", $kelas = "", $npm =
+    public function profile($nama = "", $kelas = "", $ipk =
     "")
     {
         $data = [
             'nama' => $nama,
             'kelas' => $kelas,
-            'npm' => $npm
+            'ipk' => $ipk
            ];
            
         return view('profile', $data);
@@ -58,7 +58,7 @@ class UserController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'npm' => 'required|string|max:255',
+            'ipk' => 'nullable|numeric',
             'kelas_id' => 'required|integer',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -72,7 +72,7 @@ class UserController extends Controller
             }
             $this->userModel->create([
                 'nama' => $request->input('nama'),
-                'npm' => $request->input('npm'),
+                'ipk' => $request->input('ipk'),
                 'kelas_id' => $request->input('kelas_id'),
                 'foto' => $fotoPath, // Menyimpan path foto
                 ]);
@@ -80,14 +80,25 @@ class UserController extends Controller
     }
 
     
-    public function show($id){
-        $user = $this->userModel->getUser($id);
-        $data = [
-            'title' => 'profile',
-            'user' => $user,
-        ];
-        return view('profile',$data);
+    public function show($id)
+
+    
+{
+    $user = $this->userModel->getUser($id);
+
+    if (!$user) {
+        return redirect()->back()->with('error', 'User tidak ditemukan');
     }
+
+    $data = [
+        'nama_mhs' => $user->nama,
+        'ipk' => $user->ipk,
+        'foto' => $user->foto,
+        'kelas' => $user->kelas ? $user->kelas->nama_kelas : 'Kelas Tidak ditemukan',
+    ];
+
+    return view('profile', $data);
+}
 
     public function edit($id){
         $user = UserModel::findOrFail($id);
@@ -102,7 +113,7 @@ class UserController extends Controller
         $user = UserModel::findOrFail($id);
 
         $user->nama = $request->nama;
-        $user->npm = $request->npm;
+        $user->ipk = $request->ipk;
         $user->kelas_id = $request->kelas_id;
 
         if($request->hasFile('foto')){

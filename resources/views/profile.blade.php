@@ -42,8 +42,9 @@
         }
 
         .profile-info .profile-name,
-        .profile-info .profile-class,
-        .profile-info .profile-npm {
+        .profile-info .profile-ipk,
+        .profile-info .profile-kelas
+         {
             font-weight: 600;
         }
     </style>
@@ -54,12 +55,12 @@
     <div class="container profile-container">
         <div class="card profile-card">
             <div class="profile-avatar mb-3">
-                <img src="{{ $user->foto ? asset($user->foto) : asset('assets/upload/img/default-foto.jpg') }}" alt="Profile">
+                <img src="{{ $foto ? asset($foto) : asset('assets/upload/img/default-foto.jpg') }}" alt="Profile">
             </div>
             <div class="profile-info">
-                <p class="profile-name">Nama: <br><span>{{ $user->nama }}</span></p>
-                <p class="profile-class">NPM: <br><span>{{ $user->npm }}</span></p>
-                <p class="profile-npm">Kelas: <br><span>{{ $user->nama_kelas ?? 'Kelas Tidak ditemukan'}}</span></p>
+                <p class="profile-name">Nama: <br><span>{{ $nama_mhs }}</span></p>
+                <p class="profile-ipk">IPK: <br><span>{{ $ipk }}</span></p>
+                <p class="profile-kelas">Kelas: <br><span>{{ $user->$kelas->nama_kelas ?? 'Kelas tidak ditemukan' }}</span></p>
             </div>
         </div>
     </div>

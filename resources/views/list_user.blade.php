@@ -12,7 +12,7 @@
                     <th>ID</th>
                     <th>Foto</th> <!-- Kolom Foto -->
                     <th>Nama</th>
-                    <th>NPM</th>
+                    <th>IPK</th>
                     <th>Kelas</th>
                     <th>Aksi</th>
                 </tr>
@@ -26,7 +26,7 @@
                              alt="Profile" width="50" height="50" class="rounded-circle"> <!-- Menampilkan Foto -->
                     </td>
                     <td>{{ $user->nama }}</td>
-                    <td>{{ $user->npm }}</td>
+                    <td>{{ $user->ipk }}</td>
                     <td>{{ $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan' }}</td>
                     <td>
                     <a href="{{ route('users.show', $user['id'])}}" class="btn btn-primary mb-3">View</a>

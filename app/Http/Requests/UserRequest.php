@@ -23,7 +23,7 @@ class UserRequest extends FormRequest
     {
         return [
             'nama' => 'required',
-            'npm' => 'required',
+            'ipk' => 'nullable',
             
         ];
     }
